@@ -13,10 +13,9 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => (
   <Drawer.Navigator
-    initialRouteName="Home"
     drawerContent={props => <DrawerMenu {...props} />}
     screenOptions={{headerShown: false}}>
-    <Drawer.Screen name="Home" component={StackNavigator} />
+    <Drawer.Screen name="Navigator" component={StackNavigator} />
     <Drawer.Screen
       name="UserDetails"
       component={UserDetails}
