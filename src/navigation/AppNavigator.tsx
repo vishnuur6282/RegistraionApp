@@ -20,9 +20,8 @@ const DrawerNavigator = () => (
     <Drawer.Screen
       name="UserDetails"
       component={UserDetails}
-      options={({route}) => {
+      options={({route}: any) => {
         const navigation = useNavigation();
-
         return {
           drawerLabel: 'User Details',
           headerShown: true,
@@ -37,14 +36,12 @@ const DrawerNavigator = () => (
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={{
-                  uri:
-                    (route.params as any)?.userDetail?.imagePath ??
-                    imagePaths[0],
+                  uri: (route.params as any)?.imageUrl ?? imagePaths[0],
                 }}
                 style={styles.headerImage}
               />
               <Text style={{color: 'white', fontSize: 18}}>
-                {(route.params as any)?.userDetail?.text || 'User name'}
+                {(route.params as any)?.first_name || 'User name'}
               </Text>
             </View>
           ),

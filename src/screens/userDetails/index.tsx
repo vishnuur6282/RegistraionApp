@@ -23,13 +23,13 @@ interface editInterface {
   last_name: string;
 }
 
-const UserDetails = ({route, navigation}: any) => {
+const UserDetails = ({route}: any) => {
   const dispatch = useDispatch();
-  const {currentUser, users} = useSelector((state: any) => state.users);
+  const {users} = useSelector((state: any) => state.users);
   const data = route.params;
   const [formValues, setFormValues] = useState<editInterface>({
-    first_name: data?.first_name,
-    last_name: data?.last_name,
+    first_name: '',
+    last_name: '',
   });
   const [editableState, setEditableState] = useState<{
     [key in keyof editInterface]: boolean;
@@ -39,15 +39,9 @@ const UserDetails = ({route, navigation}: any) => {
   });
 
   useEffect(() => {
-    const userDetail: UserData = {
-      text:
-        currentUser?.email === data.email
-          ? currentUser?.first_name + ' (You)'
-          : data?.first_name,
-      imagePath: data.imageUrl,
-    };
-    navigation.setParams({userDetail});
-  }, [navigation]);
+    setFormValues({first_name: data?.first_name, last_name: data?.last_name});
+    setEditableState({first_name: false, last_name: false});
+  }, [data]);
 
   const handleInputChange = (inputName: keyof editInterface, text: string) => {
     setFormValues({
@@ -110,7 +104,7 @@ const UserDetails = ({route, navigation}: any) => {
                 autoFocus={true}
               />
             ) : (
-              <Text style={homeStyle.data}>{formValues?.first_name}</Text>
+              <Text style={homeStyle.data}>{data?.first_name}</Text>
             )}
           </View>
           <View style={homeStyle.section}>
@@ -141,7 +135,7 @@ const UserDetails = ({route, navigation}: any) => {
                   autoFocus={true}
                 />
               ) : (
-                <Text style={homeStyle.data}>{formValues?.last_name}</Text>
+                <Text style={homeStyle.data}>{data?.last_name}</Text>
               )}
             </View>
           </View>

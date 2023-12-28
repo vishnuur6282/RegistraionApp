@@ -1,5 +1,9 @@
 import React from 'react';
+
+import {TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {useNavigation} from '@react-navigation/native';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/login';
@@ -18,13 +22,36 @@ const StackNavigator = () => (
       options={{
         headerShown: true,
         headerStyle: {
-          backgroundColor: 'transparent', // Set the background color to transparent
+          backgroundColor: 'transparent',
         },
-        headerTransparent: true, // Make the header transparent
+        headerTransparent: true,
         headerTintColor: 'white',
       }}
     />
-    <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen
+      name="Home"
+      component={HomeScreen}
+      options={() => {
+        const navigation = useNavigation() as any;
+        return {
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: 'transparent',
+          },
+          headerTransparent: true,
+          headerTitle: '',
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+              style={{marginLeft: 16}}>
+              <MaterialIcon name="menu" size={24} />
+            </TouchableOpacity>
+          ),
+        };
+      }}
+    />
   </Stack.Navigator>
 );
 

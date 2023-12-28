@@ -11,8 +11,6 @@ import {
 } from 'react-native';
 import {useSelector} from 'react-redux';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
 import {homeStyle} from './style';
 
 import {FormValuesType} from '../registration';
@@ -66,12 +64,9 @@ const HomeScreen = ({navigation}: any) => {
         <ImageBackground
           source={require('../../assets/Images/background.jpg')}
           style={homeStyle.backgroundImage}>
-          <TouchableOpacity
-            onPress={() => navigation.openDrawer()}
-            style={homeStyle.menuBtn}>
-            <MaterialIcon name="menu" size={32} />
-          </TouchableOpacity>
-          <Text style={homeStyle.heading}>Hi, {currentUser.first_name}</Text>
+          <Text style={homeStyle.heading}>
+            Hi, {currentUser.first_name} {currentUser.last_name}
+          </Text>
         </ImageBackground>
       </View>
       <View style={homeStyle.detailWrap}>
