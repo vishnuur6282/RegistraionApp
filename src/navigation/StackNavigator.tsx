@@ -12,7 +12,18 @@ const StackNavigator = () => (
     initialRouteName="Login"
     screenOptions={{headerShown: false}}>
     <Stack.Screen name="Login" component={LoginScreen} />
-    <Stack.Screen name="Registration" component={RegistrationScreen} />
+    <Stack.Screen
+      name="Registration"
+      component={RegistrationScreen}
+      options={{
+        headerShown: true,
+        headerStyle: {
+          backgroundColor: 'transparent', // Set the background color to transparent
+        },
+        headerTransparent: true, // Make the header transparent
+        headerTintColor: 'white',
+      }}
+    />
     <Stack.Screen name="Home" component={HomeScreen} />
   </Stack.Navigator>
 );

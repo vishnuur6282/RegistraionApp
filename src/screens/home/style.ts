@@ -7,6 +7,12 @@ export const homeStyle = StyleSheet.create({
     width: '100%',
     backgroundColor: '#121B22',
   },
+  menuBtn: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
+    left: 12,
+    top: 12,
+  },
   heading: {
     fontSize: 24,
     color: 'white',

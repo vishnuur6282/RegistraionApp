@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useNavigation} from '@react-navigation/native';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import StackNavigator from './StackNavigator';
 import DrawerMenu from '../components/Hamburger';
@@ -53,7 +54,7 @@ const DrawerNavigator = () => (
                 navigation.goBack();
               }}
               style={{marginLeft: 16}}>
-              <Text>Back</Text>
+              <MaterialIcon name="arrow-back" size={24} />
             </TouchableOpacity>
           ),
         };

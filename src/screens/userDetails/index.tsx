@@ -1,6 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {ImageBackground, Text, TextInput, View} from 'react-native';
+import {
+  ImageBackground,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {homeStyle} from './style';
 import {updateUsers} from '../../redux/reducers/signupReducer';
@@ -23,12 +31,12 @@ const UserDetails = ({route, navigation}: any) => {
     first_name: data?.first_name,
     last_name: data?.last_name,
   });
-  //  const [editableState, setEditableState] = useState<{
-  //    [key in keyof editInterface]: boolean;
-  //  }>({
-  //    first_name: false,
-  //    last_name: false,
-  //  });
+  const [editableState, setEditableState] = useState<{
+    [key in keyof editInterface]: boolean;
+  }>({
+    first_name: false,
+    last_name: false,
+  });
 
   useEffect(() => {
     const userDetail: UserData = {
@@ -53,12 +61,16 @@ const UserDetails = ({route, navigation}: any) => {
     dispatch(updateUsers(newUsers));
   };
 
-  //  const handleEditPress = (field: keyof editInterface) => {
-  //    setEditableState(prevState => ({
-  //      ...prevState,
-  //      [field]: !prevState[field], // Toggle the editable state
-  //    }));
-  //  };
+  const handleEditPress = (field: keyof editInterface) => {
+    setEditableState(prevState => ({
+      ...prevState,
+      [field]: !prevState[field], // Toggle the editable state
+    }));
+  };
+
+  const saveEdit = () => {
+    setEditableState({first_name: false, last_name: false});
+  };
 
   return (
     <View style={homeStyle.container}>
@@ -72,34 +84,65 @@ const UserDetails = ({route, navigation}: any) => {
         </View>
         <View style={homeStyle.detailWrap}>
           <View style={homeStyle.section}>
-            <Text style={homeStyle.label}>First Name:</Text>
-            <View>
+            <View style={homeStyle.editWrap}>
+              <Text style={homeStyle.label}>First Name</Text>
+              {editableState.first_name ? (
+                <TouchableOpacity
+                  onPress={saveEdit}
+                  style={homeStyle.editButton}>
+                  <MaterialIcon name="save" size={18} />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => handleEditPress('first_name')}
+                  style={homeStyle.editButton}>
+                  <MaterialIcon name="create" size={18} />
+                </TouchableOpacity>
+              )}
+            </View>
+            {editableState.first_name ? (
               <TextInput
-                style={homeStyle.data}
+                style={[homeStyle.data, homeStyle.inputStyle]}
                 placeholder="Enter text here"
                 onChangeText={text => handleInputChange('first_name', text)}
                 value={formValues?.first_name}
                 editable={true}
-                //autoFocus={editableState.first_name ? true : false}
+                autoFocus={true}
               />
-              {/*<TouchableOpacity onPress={() => handleEditPress('first_name')}>
-                <Text>Edit</Text>
-              </TouchableOpacity>*/}
-            </View>
+            ) : (
+              <Text style={homeStyle.data}>{formValues?.first_name}</Text>
+            )}
           </View>
           <View style={homeStyle.section}>
-            <Text style={homeStyle.label}>Last Name:</Text>
+            <View style={homeStyle.editWrap}>
+              <Text style={homeStyle.label}>Last Name</Text>
+              {editableState.last_name ? (
+                <TouchableOpacity
+                  onPress={saveEdit}
+                  style={homeStyle.editButton}>
+                  <MaterialIcon name="save" size={18} />
+                </TouchableOpacity>
+              ) : (
+                <TouchableOpacity
+                  onPress={() => handleEditPress('last_name')}
+                  style={homeStyle.editButton}>
+                  <MaterialIcon name="create" size={18} />
+                </TouchableOpacity>
+              )}
+            </View>
             <View>
-              <TextInput
-                style={homeStyle.data}
-                placeholder="Enter text here"
-                onChangeText={text => handleInputChange('last_name', text)}
-                value={formValues?.last_name}
-                editable={true}
-              />
-              {/*<TouchableOpacity onPress={() => handleEditPress('last_name')}>
-                <Text>Edit</Text>
-              </TouchableOpacity>*/}
+              {editableState.last_name ? (
+                <TextInput
+                  style={[homeStyle.data, homeStyle.inputStyle]}
+                  placeholder="Enter text here"
+                  onChangeText={text => handleInputChange('last_name', text)}
+                  value={formValues?.last_name}
+                  editable={true}
+                  autoFocus={true}
+                />
+              ) : (
+                <Text style={homeStyle.data}>{formValues?.last_name}</Text>
+              )}
             </View>
           </View>
           <View style={homeStyle.section}>

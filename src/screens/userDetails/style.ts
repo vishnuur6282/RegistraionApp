@@ -59,5 +59,15 @@ export const homeStyle = StyleSheet.create({
     fontWeight: '500',
     color: 'white',
     fontSize: 16,
+    minWidth: 124,
   },
+  inputStyle: {
+    padding: 0,
+  },
+  editWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editButton: {paddingLeft: 12},
 });

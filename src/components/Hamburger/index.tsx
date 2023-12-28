@@ -1,9 +1,10 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import imagePaths from '../../constants/images';
+import {useDispatch, useSelector} from 'react-redux';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 import {styles} from './style';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
-import {useDispatch, useSelector} from 'react-redux';
 
 const DrawerMenu = ({navigation}: any) => {
   const {currentUser} = useSelector((state: any) => state.users);
@@ -12,8 +13,15 @@ const DrawerMenu = ({navigation}: any) => {
     dispatch(setCurrentUser({}));
     navigation.navigate('Login');
   };
+
+  const closeDrawer = () => {
+    navigation.closeDrawer();
+  };
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.drawerCloseButton} onPress={closeDrawer}>
+        <MaterialIcon name="clear" size={24} />
+      </TouchableOpacity>
       <View style={styles.drawerImageWrap}>
         {!!currentUser?.imageUrl && (
           <Image
