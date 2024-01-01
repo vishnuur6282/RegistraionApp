@@ -46,7 +46,7 @@ const StackNavigator = () => (
                 navigation.openDrawer();
               }}
               style={{marginLeft: 16}}>
-              <MaterialIcon name="menu" size={24} />
+              <MaterialIcon name="menu" size={24} color="white" />
             </TouchableOpacity>
           ),
         };

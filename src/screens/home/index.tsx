@@ -34,6 +34,10 @@ const HomeScreen = ({navigation}: any) => {
     setVisible(false);
   };
 
+  const loginedUser = users.find(
+    (x: FormValuesType) => x.email === currentUser.email,
+  );
+
   const renderItem = ({item}: FormValuesType | any) => (
     <Pressable onPress={() => onPressUser(item)} key={item.email}>
       <View style={homeStyle.section}>
@@ -46,7 +50,7 @@ const HomeScreen = ({navigation}: any) => {
           </TouchableOpacity>
           <View style={homeStyle.datawrap}>
             <Text style={homeStyle.name}>
-              {item?.email === currentUser?.email
+              {item?.email === loginedUser?.email
                 ? item.first_name + ' (You)'
                 : item.first_name}
             </Text>
@@ -65,7 +69,7 @@ const HomeScreen = ({navigation}: any) => {
           source={require('../../assets/Images/background.jpg')}
           style={homeStyle.backgroundImage}>
           <Text style={homeStyle.heading}>
-            Hi, {currentUser.first_name} {currentUser.last_name}
+            Hi, {loginedUser?.first_name} {loginedUser?.last_name}
           </Text>
         </ImageBackground>
       </View>

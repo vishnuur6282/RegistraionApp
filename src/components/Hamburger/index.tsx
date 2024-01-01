@@ -10,8 +10,8 @@ const DrawerMenu = ({navigation}: any) => {
   const {currentUser} = useSelector((state: any) => state.users);
   const dispatch = useDispatch();
   const onLogingOut = () => {
-    dispatch(setCurrentUser({}));
     navigation.navigate('Login');
+    dispatch(setCurrentUser({}));
   };
 
   const closeDrawer = () => {

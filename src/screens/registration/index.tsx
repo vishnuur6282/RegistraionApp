@@ -99,14 +99,13 @@ const RegistrationScreen = ({navigation}: any) => {
       newFieldWarnings.confirmPassword = 'Passwords do not match';
     }
 
-    //if (Object.keys(newFieldWarnings).length > 0) {
-    //  setFieldWarnings(newFieldWarnings);
-    //  showToast(
-    //    'Please fill in all required fields and make sure passwords match',
-    //  );
-    //  return;
-    //}
-
+    if (Object.keys(newFieldWarnings).length > 0) {
+      setFieldWarnings(newFieldWarnings);
+      //  showToast(
+      //    'Please fill in all required fields and make sure passwords match',
+      //  );
+      return;
+    }
     dispatch(onSigningUp(formValues));
     showToast('Successfully registered');
     navigation.navigate('Login');

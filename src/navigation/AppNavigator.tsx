@@ -51,7 +51,7 @@ const DrawerNavigator = () => (
                 navigation.goBack();
               }}
               style={{marginLeft: 16}}>
-              <MaterialIcon name="arrow-back" size={24} />
+              <MaterialIcon name="arrow-back" size={24} color="white" />
             </TouchableOpacity>
           ),
         };

@@ -40,7 +40,9 @@ const UserDetails = ({route}: any) => {
 
   useEffect(() => {
     setFormValues({first_name: data?.first_name, last_name: data?.last_name});
-    setEditableState({first_name: false, last_name: false});
+    return () => {
+      setEditableState({first_name: false, last_name: false});
+    };
   }, [data]);
 
   const handleInputChange = (inputName: keyof editInterface, text: string) => {
@@ -84,13 +86,13 @@ const UserDetails = ({route}: any) => {
                 <TouchableOpacity
                   onPress={saveEdit}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="save" size={18} />
+                  <MaterialIcon name="save" size={18} color="white" />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
                   onPress={() => handleEditPress('first_name')}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="create" size={18} />
+                  <MaterialIcon name="create" size={18} color="white" />
                 </TouchableOpacity>
               )}
             </View>
@@ -104,7 +106,9 @@ const UserDetails = ({route}: any) => {
                 autoFocus={true}
               />
             ) : (
-              <Text style={homeStyle.data}>{data?.first_name}</Text>
+              <Text style={homeStyle.data}>
+                {formValues?.first_name ?? data?.first_name}
+              </Text>
             )}
           </View>
           <View style={homeStyle.section}>
@@ -114,13 +118,13 @@ const UserDetails = ({route}: any) => {
                 <TouchableOpacity
                   onPress={saveEdit}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="save" size={18} />
+                  <MaterialIcon name="save" size={18} color="white" />
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
                   onPress={() => handleEditPress('last_name')}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="create" size={18} />
+                  <MaterialIcon name="create" size={18} color="white" />
                 </TouchableOpacity>
               )}
             </View>
@@ -135,7 +139,9 @@ const UserDetails = ({route}: any) => {
                   autoFocus={true}
                 />
               ) : (
-                <Text style={homeStyle.data}>{data?.last_name}</Text>
+                <Text style={homeStyle.data}>
+                  {formValues?.last_name ?? data?.last_name}
+                </Text>
               )}
             </View>
           </View>
