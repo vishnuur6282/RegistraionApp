@@ -72,11 +72,19 @@ const LoginScreen = ({navigation}: any) => {
             <Text style={loginStyles.buttonText}>Sign In</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={onSignUp}>
-            <Text style={loginStyles.signUpText}>
-              Don't have an account? Sign Up
-            </Text>
-          </TouchableOpacity>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Text style={loginStyles.signUpText}>Don't have an account? </Text>
+            <TouchableOpacity onPress={onSignUp}>
+              <Text style={[loginStyles.signUpText, loginStyles.signUpBtnText]}>
+                Sign Up
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ImageBackground>

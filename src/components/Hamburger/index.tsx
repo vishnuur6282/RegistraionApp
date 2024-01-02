@@ -20,7 +20,7 @@ const DrawerMenu = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.drawerCloseButton} onPress={closeDrawer}>
-        <MaterialIcon name="clear" size={24} />
+        <MaterialIcon name="clear" size={24} color="white" />
       </TouchableOpacity>
       <View style={styles.drawerImageWrap}>
         {!!currentUser?.imageUrl && (

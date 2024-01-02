@@ -15,7 +15,6 @@ export const loginStyles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderRadius: 20,
     justifyContent: 'center',
-    alignItems: 'center',
     display: 'flex',
   },
   backgroundImage: {
@@ -43,8 +42,11 @@ export const loginStyles = StyleSheet.create({
     color: 'black',
   },
   warning: {
-    color: '#CE3908',
-    paddingTop: 8,
+    color: '#DC143C',
+    paddingTop: 4,
+    textAlign: 'left',
+    paddingLeft: 8,
+    fontWeight: '600',
   },
   button: {
     backgroundColor: '#303545',
@@ -55,8 +57,9 @@ export const loginStyles = StyleSheet.create({
     marginTop: 16,
   },
   disabledButton: {
-    backgroundColor: 'gray',
+    backgroundColor: '#303545',
     padding: 10,
+    opacity: 0.7,
     borderRadius: 12,
     width: '100%',
     color: 'black',
@@ -68,8 +71,12 @@ export const loginStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
   signUpText: {
-    marginTop: 16,
+    marginTop: 18,
     color: 'white',
     fontWeight: '600',
+  },
+  signUpBtnText: {
+    color: '#f5f5dc',
+    textDecorationLine: 'underline',
   },
 });

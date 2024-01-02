@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Button,
   FlatList,
   Image,
   ImageBackground,
@@ -21,11 +20,11 @@ const HomeScreen = ({navigation}: any) => {
   const [visible, setVisible] = useState(false);
   const [selectedImage, setselectedImage] = useState('');
 
-  const onPressUser = (data: any) => {
+  const onPressUser = (data: FormValuesType) => {
     navigation.navigate('UserDetails', data);
   };
 
-  const onPressImage = (data: any) => {
+  const onPressImage = (data: FormValuesType) => {
     setselectedImage(data.imageUrl);
     setVisible(true);
   };

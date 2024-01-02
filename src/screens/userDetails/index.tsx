@@ -12,6 +12,8 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {homeStyle} from './style';
 import {updateUsers} from '../../redux/reducers/signupReducer';
+import {useNavigation} from '@react-navigation/native';
+import {FormValuesType} from '../registration';
 
 interface UserData {
   text: string;
@@ -27,6 +29,8 @@ const UserDetails = ({route}: any) => {
   const dispatch = useDispatch();
   const {users} = useSelector((state: any) => state.users);
   const data = route.params;
+  const navigation = useNavigation();
+
   const [formValues, setFormValues] = useState<editInterface>({
     first_name: '',
     last_name: '',
@@ -50,11 +54,6 @@ const UserDetails = ({route}: any) => {
       ...formValues,
       [inputName]: text,
     });
-    let newUsers: any = [...users];
-    newUsers = newUsers.map((user: any) =>
-      user.email === data.email ? {...user, [inputName]: text} : user,
-    );
-    dispatch(updateUsers(newUsers));
   };
 
   const handleEditPress = (field: keyof editInterface) => {
@@ -66,6 +65,24 @@ const UserDetails = ({route}: any) => {
 
   const saveEdit = () => {
     setEditableState({first_name: false, last_name: false});
+    const updatedParams = {
+      ...data,
+      first_name: formValues.first_name,
+      last_name: formValues.last_name,
+    };
+    let newUsers: FormValuesType[] = [...users];
+    newUsers = newUsers.map((user: FormValuesType) =>
+      user.email === data.email
+        ? {
+            ...user,
+            first_name: formValues.first_name,
+            last_name: formValues.last_name,
+          }
+        : user,
+    );
+
+    dispatch(updateUsers(newUsers));
+    navigation.setParams(updatedParams);
   };
 
   return (
@@ -75,7 +92,7 @@ const UserDetails = ({route}: any) => {
         source={require('../../assets/Images/whatsappbg.jpg')}>
         <View style={homeStyle.userImageWrap}>
           <Text style={homeStyle.heading}>
-            {formValues.first_name} {formValues.last_name}
+            {data.first_name} {data.last_name}
           </Text>
         </View>
         <View style={homeStyle.detailWrap}>
@@ -99,11 +116,12 @@ const UserDetails = ({route}: any) => {
             {editableState.first_name ? (
               <TextInput
                 style={[homeStyle.data, homeStyle.inputStyle]}
-                placeholder="Enter text here"
+                placeholder="First Name"
                 onChangeText={text => handleInputChange('first_name', text)}
                 value={formValues?.first_name}
                 editable={true}
                 autoFocus={true}
+                placeholderTextColor="grey"
               />
             ) : (
               <Text style={homeStyle.data}>
@@ -132,11 +150,12 @@ const UserDetails = ({route}: any) => {
               {editableState.last_name ? (
                 <TextInput
                   style={[homeStyle.data, homeStyle.inputStyle]}
-                  placeholder="Enter text here"
+                  placeholder="Last Name"
                   onChangeText={text => handleInputChange('last_name', text)}
                   value={formValues?.last_name}
                   editable={true}
                   autoFocus={true}
+                  placeholderTextColor="grey"
                 />
               ) : (
                 <Text style={homeStyle.data}>
