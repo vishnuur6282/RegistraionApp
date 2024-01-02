@@ -75,7 +75,7 @@ const UserDetails = ({route}: any) => {
         source={require('../../assets/Images/whatsappbg.jpg')}>
         <View style={homeStyle.userImageWrap}>
           <Text style={homeStyle.heading}>
-            {data.first_name} {data.last_name}
+            {formValues.first_name} {formValues.last_name}
           </Text>
         </View>
         <View style={homeStyle.detailWrap}>
