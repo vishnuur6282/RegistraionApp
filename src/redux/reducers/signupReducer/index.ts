@@ -6,6 +6,7 @@ interface stateType {
   users: FormValuesType[];
   currentUser: FormValuesType;
 }
+
 export const counterSlice = createSlice({
   name: 'counter',
   initialState: <stateType | any>{

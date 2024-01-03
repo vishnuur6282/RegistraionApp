@@ -1,5 +1,5 @@
 // Import necessary components from React and React Native
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,8 @@ import {loginStyles} from './style';
 import showToast from '../../components/Toast';
 import {FormValuesType} from '../registration';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {getStoredData, setStoredData} from '../../services/storage';
 
 const LoginScreen = ({navigation}: any) => {
   const {users} = useSelector((state: any) => state.users);
@@ -21,11 +23,27 @@ const LoginScreen = ({navigation}: any) => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  const handleSignIn = () => {
+  useEffect(() => {
+    autoLogin();
+    getStoredData('userDetails');
+  }, []);
+
+  const autoLogin = async () => {
+    const userLoginDetails = await getStoredData('currentUser');
+    if (userLoginDetails) {
+      showToast('Login Success');
+      dispatch(setCurrentUser(userLoginDetails));
+      navigation.navigate('Home');
+      return;
+    }
+  };
+
+  const handleSignIn = async () => {
     const validUser = users.find(
       (user: FormValuesType) =>
         user.email === email && user.password === password,
     );
+    setStoredData(validUser, 'currentUser');
 
     if (validUser && email && password) {
       showToast('Login Success');
@@ -35,7 +53,6 @@ const LoginScreen = ({navigation}: any) => {
       showToast('Invalid credentials');
     }
   };
-
   const onSignUp = () => {
     navigation.navigate('Registration');
   };

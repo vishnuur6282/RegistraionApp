@@ -5,13 +5,16 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import {styles} from './style';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
+import {clearStoredData} from '../../services/storage';
 
 const DrawerMenu = ({navigation}: any) => {
   const {currentUser} = useSelector((state: any) => state.users);
   const dispatch = useDispatch();
+
   const onLogingOut = () => {
     navigation.navigate('Login');
     dispatch(setCurrentUser({}));
+    clearStoredData('currentUser');
   };
 
   const closeDrawer = () => {
