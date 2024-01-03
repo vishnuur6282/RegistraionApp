@@ -24,7 +24,7 @@ const HomeScreen = ({navigation}: any) => {
     navigation.navigate('UserDetails', data);
   };
 
-  const onPressImage = (data: FormValuesType) => {
+  const onPressImage = (data: any) => {
     setselectedImage(data.imageUrl);
     setVisible(true);
   };

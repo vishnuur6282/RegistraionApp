@@ -19,7 +19,6 @@ export interface FormValuesType {
   email: string;
   password: string;
   confirmPassword: string;
-  imageUrl: string;
 }
 const RegistrationScreen = ({navigation}: any) => {
   const {users} = useSelector((state: any) => state.users);
@@ -31,7 +30,6 @@ const RegistrationScreen = ({navigation}: any) => {
     email: '',
     password: '',
     confirmPassword: '',
-    imageUrl: '',
   });
   const [fieldWarnings, setFieldWarnings] = useState<Partial<FormValuesType>>(
     {},
