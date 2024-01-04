@@ -54,7 +54,6 @@ const LoginScreen = ({navigation}: any) => {
     if (validUser && email && password) {
       showToast('Login Success');
       dispatch(setCurrentUser(validUser));
-      setStoredData(users, 'userDetails');
       navigation.navigate('Home');
     } else {
       showToast('Invalid credentials');
