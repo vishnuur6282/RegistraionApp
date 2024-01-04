@@ -13,8 +13,7 @@ import {loginStyles} from './style';
 
 import showToast from '../../components/Toast';
 import {FormValuesType} from '../registration';
-import {setCurrentUser} from '../../redux/reducers/signupReducer';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import {setCurrentUser, updateUsers} from '../../redux/reducers/signupReducer';
 import {getStoredData, setStoredData} from '../../services/storage';
 
 const LoginScreen = ({navigation}: any) => {
@@ -25,8 +24,15 @@ const LoginScreen = ({navigation}: any) => {
 
   useEffect(() => {
     autoLogin();
-    getStoredData('userDetails');
+    getUserList();
   }, []);
+
+  const getUserList = async () => {
+    const userList = await getStoredData('userDetails');
+    if (Array.isArray(userList)) {
+      dispatch(updateUsers(userList));
+    }
+  };
 
   const autoLogin = async () => {
     const userLoginDetails = await getStoredData('currentUser');
@@ -48,6 +54,7 @@ const LoginScreen = ({navigation}: any) => {
     if (validUser && email && password) {
       showToast('Login Success');
       dispatch(setCurrentUser(validUser));
+      setStoredData(users, 'userDetails');
       navigation.navigate('Home');
     } else {
       showToast('Invalid credentials');
