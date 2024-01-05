@@ -1,7 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {FormValuesType} from '../../../screens/registration';
 import imagePaths from '../../../constants/images';
-import {setStoredData} from '../../../services/storage';
+import {PURGE} from 'redux-persist';
 
 interface stateType {
   users: FormValuesType[];
@@ -22,7 +22,6 @@ export const counterSlice = createSlice({
         imageUrl: imagePaths[randomIndex],
       };
       state.users = [...state.users, newUser];
-      setStoredData(state.users, 'userDetails');
     },
     setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
@@ -30,6 +29,11 @@ export const counterSlice = createSlice({
     updateUsers: (state, action) => {
       state.users = action.payload;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(PURGE, state => {
+      state.currentUser = {};
+    });
   },
 });
 

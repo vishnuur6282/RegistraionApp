@@ -13,32 +13,22 @@ import {loginStyles} from './style';
 
 import showToast from '../../components/Toast';
 import {FormValuesType} from '../registration';
-import {setCurrentUser, updateUsers} from '../../redux/reducers/signupReducer';
-import {getStoredData, setStoredData} from '../../services/storage';
+import {setCurrentUser} from '../../redux/reducers/signupReducer';
 
 const LoginScreen = ({navigation}: any) => {
-  const {users} = useSelector((state: any) => state.users);
+  const {users, currentUser} = useSelector((state: any) => state.users);
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
     autoLogin();
-    getUserList();
   }, []);
 
-  const getUserList = async () => {
-    const userList = await getStoredData('userDetails');
-    if (Array.isArray(userList)) {
-      dispatch(updateUsers(userList));
-    }
-  };
-
   const autoLogin = async () => {
-    const userLoginDetails = await getStoredData('currentUser');
-    if (userLoginDetails) {
+    if (currentUser.email) {
       showToast('Login Success');
-      dispatch(setCurrentUser(userLoginDetails));
+      dispatch(setCurrentUser(currentUser));
       navigation.navigate('Home');
       return;
     }
@@ -49,7 +39,6 @@ const LoginScreen = ({navigation}: any) => {
       (user: FormValuesType) =>
         user.email === email && user.password === password,
     );
-    setStoredData(validUser, 'currentUser');
 
     if (validUser && email && password) {
       showToast('Login Success');

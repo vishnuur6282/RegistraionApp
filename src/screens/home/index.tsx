@@ -14,6 +14,7 @@ import {homeStyle} from './style';
 
 import {FormValuesType} from '../registration';
 import ModalComponent from '../../components/Modal';
+import {clearStoredData} from '../../services/storage';
 
 const HomeScreen = ({navigation}: any) => {
   const {currentUser, users} = useSelector((state: any) => state.users);
