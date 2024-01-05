@@ -11,7 +11,7 @@ import RegistrationScreen from '../screens/registration';
 
 const Stack = createStackNavigator();
 
-const StackNavigator = () => (
+const StackNavigator = ({navigation}: any) => (
   <Stack.Navigator
     initialRouteName="Login"
     screenOptions={{headerShown: false}}>
@@ -32,7 +32,6 @@ const StackNavigator = () => (
       name="Home"
       component={HomeScreen}
       options={() => {
-        const navigation = useNavigation() as any;
         return {
           headerShown: true,
           headerStyle: {

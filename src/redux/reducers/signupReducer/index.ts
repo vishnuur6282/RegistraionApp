@@ -3,17 +3,25 @@ import {FormValuesType} from '../../../screens/registration';
 import imagePaths from '../../../constants/images';
 import {PURGE} from 'redux-persist';
 
-interface stateType {
+export interface stateType {
   users: FormValuesType[];
   currentUser: FormValuesType;
 }
 
+const initialState: stateType = {
+  users: [],
+  currentUser: {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  },
+};
+
 export const counterSlice = createSlice({
   name: 'counter',
-  initialState: <stateType | any>{
-    users: [],
-    currentUser: {},
-  },
+  initialState,
   reducers: {
     onSigningUp: (state, action) => {
       const randomIndex = Math.floor(Math.random() * imagePaths.length);
@@ -32,7 +40,7 @@ export const counterSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(PURGE, state => {
-      state.currentUser = {};
+      state.currentUser = initialState.currentUser;
     });
   },
 });
