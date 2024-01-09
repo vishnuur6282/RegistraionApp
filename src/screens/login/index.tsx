@@ -7,19 +7,19 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 
 import {loginStyles} from './style';
 
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import showToast from '../../components/Toast';
 import {FormValuesType} from '../registration';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
 
 const LoginScreen = ({navigation}: any) => {
-  const {users, currentUser} = useSelector((state: any) => state.users);
+  const {users, currentUser} = useAppSelector(state => state.users);
   const [email, setemail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     autoLogin();

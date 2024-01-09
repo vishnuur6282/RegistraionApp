@@ -9,7 +9,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const reducers = combineReducers({
@@ -22,7 +21,7 @@ const persistConfig = {
 };
 const persistedReducer = persistReducer(persistConfig, reducers);
 
-export default configureStore({
+const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -31,3 +30,9 @@ export default configureStore({
       },
     }),
 });
+
+export default store;
+
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;

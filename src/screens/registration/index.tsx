@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {loginStyles} from '../login/style';
 import {onSigningUp} from '../../redux/reducers/signupReducer';
 import showToast from '../../components/Toast';
@@ -21,8 +21,8 @@ export interface FormValuesType {
   confirmPassword: string;
 }
 const RegistrationScreen = ({navigation}: any) => {
-  const {users} = useSelector((state: any) => state.users);
-  const dispatch = useDispatch();
+  const {users} = useAppSelector(state => state.users);
+  const dispatch = useAppDispatch();
 
   const [formValues, setFormValues] = useState<FormValuesType>({
     first_name: '',

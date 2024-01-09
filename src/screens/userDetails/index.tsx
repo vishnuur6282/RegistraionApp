@@ -6,13 +6,13 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import {homeStyle} from './style';
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {updateUsers} from '../../redux/reducers/signupReducer';
-import {useNavigation} from '@react-navigation/native';
 import {FormValuesType} from '../registration';
 
 interface UserData {
@@ -26,8 +26,8 @@ interface editInterface {
 }
 
 const UserDetails = ({route}: any) => {
-  const dispatch = useDispatch();
-  const {users} = useSelector((state: any) => state.users);
+  const dispatch = useAppDispatch();
+  const {users} = useAppSelector(state => state.users);
   const data = route.params;
   const navigation = useNavigation();
 
