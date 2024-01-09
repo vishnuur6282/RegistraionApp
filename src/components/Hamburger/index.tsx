@@ -1,15 +1,15 @@
 import React from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
+import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {styles} from './style';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
 import {persistor} from '../../..';
 
 const DrawerMenu = ({navigation}: any) => {
-  const {currentUser} = useSelector((state: any) => state.users);
-  const dispatch = useDispatch();
+  const {currentUser} = useAppSelector(state => state.users);
+  const dispatch = useAppDispatch();
 
   const onLogingOut = () => {
     persistor.purge();
@@ -26,10 +26,10 @@ const DrawerMenu = ({navigation}: any) => {
         <MaterialIcon name="clear" size={24} color="white" />
       </TouchableOpacity>
       <View style={styles.drawerImageWrap}>
-        {!!currentUser?.imageUrl && (
+        {!!(currentUser as any)?.imageUrl && (
           <Image
             source={{
-              uri: currentUser?.imageUrl,
+              uri: (currentUser as any)?.imageUrl,
             }}
             style={styles.drawerImage}
           />

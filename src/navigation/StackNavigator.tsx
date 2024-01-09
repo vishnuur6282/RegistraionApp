@@ -2,7 +2,6 @@ import React from 'react';
 
 import {TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {useNavigation} from '@react-navigation/native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import HomeScreen from '../screens/home';

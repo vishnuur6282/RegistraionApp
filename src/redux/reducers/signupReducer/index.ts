@@ -1,4 +1,4 @@
-import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {FormValuesType} from '../../../screens/registration';
 import imagePaths from '../../../constants/images';
 import {PURGE} from 'redux-persist';
@@ -31,10 +31,10 @@ export const counterSlice = createSlice({
       };
       state.users = [...state.users, newUser];
     },
-    setCurrentUser: (state, action: PayloadAction<any>) => {
+    setCurrentUser: (state, action) => {
       state.currentUser = action.payload;
     },
-    updateUsers: (state, action: PayloadAction<any>) => {
+    updateUsers: (state, action) => {
       state.users = action.payload;
     },
   },
