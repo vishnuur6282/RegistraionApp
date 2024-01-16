@@ -1,17 +1,13 @@
 // Import necessary components from React and React Native
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-} from 'react-native';
+import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {loginStyles} from '../login/style';
 import {onSigningUp} from '../../redux/reducers/signupReducer';
 import showToast from '../../components/Toast';
+import CustomInput from '../../components/CustomInput';
+import {validateEmail} from '../../utils/validationUtils';
 
 export interface FormValuesType {
   first_name: string;
@@ -47,11 +43,6 @@ const RegistrationScreen = ({navigation}: any) => {
       setdisableSubmit(true);
     }
   }, [fieldWarnings]);
-
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
 
   const handleInputChange = (inputName: keyof FormValuesType, text: string) => {
     setFormValues({
@@ -117,66 +108,44 @@ const RegistrationScreen = ({navigation}: any) => {
       style={loginStyles.backgroundImage}>
       <View style={loginStyles.container}>
         <View style={loginStyles.wrap}>
-          <TextInput
-            style={loginStyles.input}
-            placeholder="First Name"
-            placeholderTextColor="grey"
-            onChangeText={text => handleInputChange('first_name', text)}
+          <CustomInput
+            handleChange={text => handleInputChange('first_name', text)}
             value={formValues.first_name}
+            placeholder="First Name"
+            warning={fieldWarnings.first_name}
           />
-          {fieldWarnings.first_name && (
-            <Text style={loginStyles.warning}>{fieldWarnings.first_name}</Text>
-          )}
-          <TextInput
-            style={loginStyles.input}
-            placeholder="Last Name"
-            placeholderTextColor="grey"
-            onChangeText={text => handleInputChange('last_name', text)}
+          <CustomInput
+            handleChange={text => handleInputChange('last_name', text)}
             value={formValues.last_name}
+            placeholder="Last Name"
+            warning={fieldWarnings.last_name}
           />
-          {fieldWarnings.last_name && (
-            <Text style={loginStyles.warning}>{fieldWarnings.last_name}</Text>
-          )}
-          <TextInput
-            style={loginStyles.input}
-            placeholder="Email"
-            placeholderTextColor="grey"
-            onChangeText={text => handleInputChange('email', text)}
+          <CustomInput
+            handleChange={text => handleInputChange('email', text)}
             value={formValues.email}
-            keyboardType="email-address"
             autoCapitalize="none"
+            placeholder="Email"
+            warning={fieldWarnings.email}
+            keyboardType="email-address"
             onBlur={handleEmailBlur}
           />
-          {fieldWarnings.email && (
-            <Text style={loginStyles.warning}>{fieldWarnings.email}</Text>
-          )}
-          <TextInput
-            style={loginStyles.input}
-            placeholder="Password"
-            placeholderTextColor="grey"
-            secureTextEntry={true}
-            onChangeText={text => handleInputChange('password', text)}
+          <CustomInput
+            handleChange={text => handleInputChange('password', text)}
             value={formValues.password}
             autoCapitalize="none"
-          />
-          {fieldWarnings.password && (
-            <Text style={loginStyles.warning}>{fieldWarnings.password}</Text>
-          )}
-          <TextInput
-            style={loginStyles.input}
-            placeholder="Confirm Password"
-            placeholderTextColor="grey"
             secureTextEntry={true}
-            onChangeText={text => handleInputChange('confirmPassword', text)}
+            placeholder="Password"
+            warning={fieldWarnings.password}
+          />
+          <CustomInput
+            handleChange={text => handleInputChange('confirmPassword', text)}
+            onSubmitEdit={handleSignIn}
             value={formValues.confirmPassword}
             autoCapitalize="none"
-            onSubmitEditing={handleSignIn}
+            secureTextEntry={true}
+            placeholder="Confirm Password"
+            warning={fieldWarnings.confirmPassword}
           />
-          {fieldWarnings.confirmPassword && (
-            <Text style={loginStyles.warning}>
-              {fieldWarnings.confirmPassword}
-            </Text>
-          )}
           <TouchableOpacity
             disabled={disableSubmit}
             style={[

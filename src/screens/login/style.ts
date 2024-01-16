@@ -79,4 +79,9 @@ export const loginStyles = StyleSheet.create({
     color: '#f5f5dc',
     textDecorationLine: 'underline',
   },
+  signUpWrapTextwrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });

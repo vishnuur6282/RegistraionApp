@@ -2,23 +2,17 @@ import React from 'react';
 import {Modal, StyleSheet, View, Image, TouchableOpacity} from 'react-native';
 
 interface modalInterface {
-  setVisible: (value: boolean) => void;
   visible: boolean;
   image: string;
   handleModalOutsidePress: () => void;
 }
 const ModalComponent = ({
-  setVisible,
   handleModalOutsidePress,
   visible,
   image,
 }: modalInterface) => {
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={visible}
-      onRequestClose={() => setVisible(!visible)}>
+    <Modal animationType="slide" transparent={true} visible={visible}>
       <TouchableOpacity
         style={styles.modalContainer}
         activeOpacity={1}
