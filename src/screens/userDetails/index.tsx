@@ -14,6 +14,7 @@ import {homeStyle} from './style';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {updateUsers} from '../../redux/reducers/signupReducer';
 import {FormValuesType} from '../registration';
+import CustomIcon from '../../components/CustomIcons';
 
 interface UserData {
   text: string;
@@ -103,13 +104,17 @@ const UserDetails = ({route}: any) => {
                 <TouchableOpacity
                   onPress={saveEdit}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="save" size={18} color="white" />
+                  <CustomIcon size={18}>
+                    <MaterialIcon name="save" />
+                  </CustomIcon>
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
                   onPress={() => handleEditPress('first_name')}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="create" size={18} color="white" />
+                  <CustomIcon size={18}>
+                    <MaterialIcon name="create" />
+                  </CustomIcon>
                 </TouchableOpacity>
               )}
             </View>
@@ -136,13 +141,17 @@ const UserDetails = ({route}: any) => {
                 <TouchableOpacity
                   onPress={saveEdit}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="save" size={18} color="white" />
+                  <CustomIcon size={18}>
+                    <MaterialIcon name="save" />
+                  </CustomIcon>
                 </TouchableOpacity>
               ) : (
                 <TouchableOpacity
                   onPress={() => handleEditPress('last_name')}
                   style={homeStyle.editButton}>
-                  <MaterialIcon name="create" size={18} color="white" />
+                  <CustomIcon size={18}>
+                    <MaterialIcon name="create" />
+                  </CustomIcon>
                 </TouchableOpacity>
               )}
             </View>

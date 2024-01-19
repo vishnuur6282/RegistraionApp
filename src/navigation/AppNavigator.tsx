@@ -9,6 +9,7 @@ import StackNavigator from './StackNavigator';
 import DrawerMenu from '../components/Hamburger';
 import UserDetails from '../screens/userDetails';
 import imagePaths from '../constants/images';
+import CustomIcon from '../components/CustomIcons';
 
 const Drawer = createDrawerNavigator();
 
@@ -51,7 +52,9 @@ const DrawerNavigator = () => (
                 navigation.goBack();
               }}
               style={{marginLeft: 16}}>
-              <MaterialIcon name="arrow-back" size={24} color="white" />
+              <CustomIcon>
+                <MaterialIcon name="arrow-back" />
+              </CustomIcon>
             </TouchableOpacity>
           ),
         };

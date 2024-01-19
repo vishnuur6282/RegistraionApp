@@ -7,6 +7,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/login';
 import RegistrationScreen from '../screens/registration';
+import CustomIcon from '../components/CustomIcons';
 
 const Stack = createStackNavigator();
 
@@ -44,7 +45,9 @@ const StackNavigator = ({navigation}: any) => (
                 navigation.openDrawer();
               }}
               style={{marginLeft: 16}}>
-              <MaterialIcon name="menu" size={24} color="white" />
+              <CustomIcon>
+                <MaterialIcon name="menu" />
+              </CustomIcon>
             </TouchableOpacity>
           ),
         };

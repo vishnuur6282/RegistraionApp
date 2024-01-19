@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {styles} from './style';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
 import {persistor} from '../../..';
+import CustomIcon from '../CustomIcons';
 
 const DrawerMenu = ({navigation}: any) => {
   const {currentUser} = useAppSelector(state => state.users);
@@ -23,7 +24,9 @@ const DrawerMenu = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.drawerCloseButton} onPress={closeDrawer}>
-        <MaterialIcon name="clear" size={24} color="white" />
+        <CustomIcon>
+          <MaterialIcon name="clear" />
+        </CustomIcon>
       </TouchableOpacity>
       <View style={styles.drawerImageWrap}>
         {!!(currentUser as any)?.imageUrl && (
