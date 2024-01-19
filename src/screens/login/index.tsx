@@ -5,10 +5,10 @@ import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {loginStyles} from './style';
 
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
-import showToast from '../../components/Toast';
+import showToast from '../../components/toast';
 import {FormValuesType} from '../registration';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
-import CustomInput from '../../components/CustomInput';
+import CustomInput from '../../components/customInput';
 
 const LoginScreen = ({navigation}: any) => {
   const {users, currentUser} = useAppSelector(state => state.users);

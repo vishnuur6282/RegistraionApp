@@ -6,10 +6,10 @@ import {useNavigation} from '@react-navigation/native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import StackNavigator from './StackNavigator';
-import DrawerMenu from '../components/Hamburger';
+import DrawerMenu from '../components/hamburger';
 import UserDetails from '../screens/userDetails';
 import imagePaths from '../constants/images';
-import CustomIcon from '../components/CustomIcons';
+import CustomIcon from '../components/customIcons';
 
 const Drawer = createDrawerNavigator();
 

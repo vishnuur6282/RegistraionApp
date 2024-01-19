@@ -14,7 +14,7 @@ import {homeStyle} from './style';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {updateUsers} from '../../redux/reducers/signupReducer';
 import {FormValuesType} from '../registration';
-import CustomIcon from '../../components/CustomIcons';
+import CustomIcon from '../../components/customIcons';
 
 interface UserData {
   text: string;

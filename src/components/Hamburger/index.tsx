@@ -6,7 +6,7 @@ import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {styles} from './style';
 import {setCurrentUser} from '../../redux/reducers/signupReducer';
 import {persistor} from '../../..';
-import CustomIcon from '../CustomIcons';
+import CustomIcon from '../customIcons';
 
 const DrawerMenu = ({navigation}: any) => {
   const {currentUser} = useAppSelector(state => state.users);

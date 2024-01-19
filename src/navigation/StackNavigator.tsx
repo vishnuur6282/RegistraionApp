@@ -7,7 +7,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import HomeScreen from '../screens/home';
 import LoginScreen from '../screens/login';
 import RegistrationScreen from '../screens/registration';
-import CustomIcon from '../components/CustomIcons';
+import CustomIcon from '../components/customIcons';
 
 const Stack = createStackNavigator();
 

@@ -12,7 +12,7 @@ import {
 import {homeStyle} from './style';
 
 import {FormValuesType} from '../registration';
-import ModalComponent from '../../components/Modal';
+import ModalComponent from '../../components/modal';
 import {useAppSelector} from '../../redux/hooks';
 
 const HomeScreen = ({navigation}: any) => {

@@ -5,8 +5,8 @@ import {View, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import {useAppDispatch, useAppSelector} from '../../redux/hooks';
 import {loginStyles} from '../login/style';
 import {onSigningUp} from '../../redux/reducers/signupReducer';
-import showToast from '../../components/Toast';
-import CustomInput from '../../components/CustomInput';
+import showToast from '../../components/toast';
+import CustomInput from '../../components/customInput';
 import {validateEmail} from '../../utils/validationUtils';
 
 export interface FormValuesType {
